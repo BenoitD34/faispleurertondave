@@ -5,7 +5,9 @@
   <meta charset="utf-8">
   <title>Fais pleurer ton Dave</title>
   <link rel="stylesheet" href="./css/styles.dave.css">
-
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/animationLarme.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
 
 </head>
 
@@ -16,16 +18,22 @@
 	<div id="AllDaveOptions">
 
 		<div id="DaveCompteurs">
-			<div id="Dave">
-					<!-- <div id="larme"></div> >> Test pour naimation larme -->
-					<img id="clicker" src="images/hublot1.png">
+			<div id="Dave" onclick="LancmtEvent(); animationLarme(); animationLarmeDroite()">
+				<!--===== ANIMATION LARME HTML =====-->
+				<div id="positionLarmeGauche">
+					<img id="imgLarmeGauche" src="images/larme.png">
+				</div>
+				<div id="positionLarmeDroite">
+					<img id="imgLarmeDroite" src="images/larme.png">
+				</div>
+				<!--===== CLICKER =====-->
+				<img id="clicker" src="images/hublot1.png">
 			</div>
 
 			<div id="Compteurs">
-				<p id="CompteurLarmes">Compteur de larmes : 0</p>
-				<p id="LarmesSeconde">Larmes par seconde : 0</p>
-				<p id="MultiNbLarmesClic">Multiplicateur du nombre de larmes / clic : x 1</p>
-				<p id="TotalLarmes">Total des larmes accumulées : 0</p>
+				<p id="CompteurLarmes">0</p>
+				<p id="LarmesSeconde">Par seconde : 0</p>
+				<p id="MultiNbLarmesClic">x 1</p>
 			</div>
 		</div>
 		
@@ -35,33 +43,45 @@
 
 			<div id="AllOptionUp">
 
-				<h1>Les options à upgrader</h1>
+				<button id="sauvegarde" onclick="sauvegarde()">Sauvegarde</button>
+				<button id="charger" onclick="reload()">Charger</button>
+				<h1>Des langages à upgrader</h1>
 
-				<table>
-					<tr>
-						<td><img src="./images/OptionUp1.png"></td>
-						<td><img src="./images/OptionUp1.png"></td>
-						<td><img src="./images/OptionUp1.png"></td>
-						<td><img src="./images/OptionUp1.png"></td>
+				<table id="TableOptionUp">
+					<tr id="Visuels">
+						<td id="TableOption1" colspan="3"><img id="visuelUp" src="images/OptionUp1.png"></td>
+						<td id="TableOption2" colspan="3"><img id="visuelUp" src="images/OptionUp2.png"></td>
+						<td id="TableOption3" colspan="3"><img id="visuelUp" src="images/OptionUp3.png"></td>
+						<td id="TableOption4" colspan="3"><img id="visuelUp" src="images/OptionUp4.png"></td>
 					</tr>
 					<tr id="Niveaux">
-						<td><button id="OptionUp1">Niveau 1 <Br>Prix : 20</button></td>
-						<td><button id="OptionUp2" type="button" disabled="true">Niveau 1 / Coût prochain achat : 50</button></td>
-						<td><button id="OptionUp3" type="button" disabled="true">Niveau 1 / Coût prochain achat : 100</button></td>
-						<td><button id="OptionUp4" type="button" disabled="true">Niveau 1 / Coût prochain achat : 500</button></td>
+						<td id="niveauUp1">1</td>
+						<td colspan="2"><button class="tooltip" id="OptionUp1">20<span class="tooltiptext">Augmente le nombre de larmes récolté à chaque clic</span></button></td>
+						<td id="niveauUp2">1</td>
+						<td colspan="2"><button class="tooltip" id="OptionUp2" disabled="true"> 50<span class="tooltiptext">Récolte automatiquement des larmes chaque seconde</span></button></td>
+						<td id="niveauUp3">1</td>
+						<td colspan="2"><button class="tooltip" id="OptionUp3" disabled="true"> 100<span class="tooltiptext">Récolte automatiquement des larmes chaque seconde</span></button></td>
+						<td id="niveauUp4">1</td>
+						<td colspan="2"><button class="tooltip" id="OptionUp4" disabled="true"> 500<span class="tooltiptext">Augmente le nombre de larmes récolté à chaque clic</span></button></td>
 					</tr>
-					<tr>
-						<td><img src="./images/OptionUp1.png"></td>
-						<td><img src="./images/OptionUp1.png"></td>
-						<td><img src="./images/OptionUp1.png"></td>
-						<td><img src="./images/OptionUp1.png"></td>
+					<tr id="ligneVide"><td></td></tr>
+					<tr id="Visuels">
+						<td id="TableOption5" colspan="3"><img id="visuelUp" src="images/OptionUp5.png"></td>
+						<td id="TableOption6" colspan="3"><img id="visuelUp" src="images/OptionUp6.png"></td>
+						<td id="TableOption7" colspan="3"><img id="visuelUp" src="images/OptionUp7.png"></td>
+						<td id="TableOption8" colspan="3"><img id="visuelUp" src="images/OptionUp8.png"></td>
 					</tr>
 					<tr id="Niveaux">
-						<td><button id="OptionUp5" type="button" disabled="true">Niveau 1 / Coût prochain achat : 1 000</button></td>
-						<td><button id="OptionUp6" type="button" disabled="true">Niveau 1 / Coût prochain achat : 5 000</button></td>
-						<td><button id="OptionUp7" type="button" disabled="true">Niveau 1 / Coût prochain achat : 25 000</button></td>
-						<td><button id="OptionUp8" type="button" disabled="true">Niveau 1 / Coût prochain achat : 50 000</button></td>
+						<td id="niveauUp5">1</td>
+						<td colspan="2"><button class="tooltip" id="OptionUp5" disabled="true"> 1000<span class="tooltiptext">Récolte automatiquement des larmes chaque seconde</span></button></td>
+						<td id="niveauUp6">1</td>
+						<td colspan="2"><button class="tooltip" id="OptionUp6" disabled="true"> 5000<span class="tooltiptext">Récolte automatiquement des larmes chaque seconde</span></button></td>
+						<td id="niveauUp7">1</td>
+						<td colspan="2"><button class="tooltip" id="OptionUp7" disabled="true"> 25000<span class="tooltiptext">Augmente le nombre de larmes récolté à chaque clic</span></button></td>
+						<td id="niveauUp8">1</td>
+						<td colspan="2"><button class="tooltip" id="OptionUp8" disabled="true"> 50000<span class="tooltiptext">Récolte automatiquement des larmes chaque seconde</span></button></td>
 					</tr>
+					<tr id="ligneVide"><td></td></tr>
 				</table>
 			</div>
 
@@ -70,15 +90,22 @@
 
 			<div id="AllOptionPonc">
 				
-				<h1>Les options ponctuelles</h1>
+				<h1>Des options à faire pleurer</h1>
 
-				<div id="OptionPonc1"></div>
-
-				<div id="OptionPonc2"></div>
-
-				<div id="OptionPonc3"></div>
-
-				<div id="OptionPonc4"></div>
+				<table id="TableOptionsPonc">
+					<tr id="Visuels">
+						<td id="TablePonc1"><img id="visuelUp" src="images/OptionPonc1.png"></td>
+						<td id="TablePonc2"><img id="visuelUp" src="images/OptionPonc2.png"></td>
+						<td id="TablePonc3"><img id="visuelUp" src="images/OptionPonc3.png"></td>
+						<td id="TablePonc4"><img id="visuelUp" src="images/OptionPonc4.png"></td>
+					</tr>
+					<tr id="NiveauxPonc">
+						<td><button class="tooltip" id="OptionPonc1" type="button" disabled="true">25000<span class="tooltiptext">Oh non la machine à café est en panne ! Comment Dave va-t-il tenir toute la journée ?... <Br><Br>Achetez cette option et augmentez ainsi les 4 premiers langages d'1 niveau !</span></button></td>
+						<td><button class="tooltip" id="OptionPonc2" type="button" disabled="true">50000<span class="tooltiptext">L'ami développeur de Dave n'a vraiment rien compris, il n'arrête pas de déranger Dave dans son travail. <Br><Br>Débloquez cette option surprise !</span></button></td>
+						<td><button class="tooltip" id="OptionPonc3" type="button" disabled="true">25000000<span class="tooltiptext">... Ô désespoir !<Br><Br>Coupure d'électricité, plus d'Internet. Et Dave n'avait pas sauvegardé son travail...<Br><Br>Cette option augmente les 4 derniers langages d'1 niveau !</span></button></td>
+						<td><button class="tooltip" id="OptionPonc4" type="button">30000<span class="tooltiptext">Les formateurs débarquent dans le bureau de Dave pour lui donner plein de nouveaux TP sur des technologies qu'il ne connait pas ! Dave se met en PLS... <Br><Br>Une carte mystère aléatoire va se lancer.</span></button></td>
+					</tr>
+				</table>
 
 			</div>	
 
@@ -86,15 +113,87 @@
 	</div>
 
 
+<!-- ------------ LES MODALES POUR LES EVENTS ------------ -->
+
+	<!-- Modal Carte Mystère 1 -->
+	<div id="ModalCarteMyst1" class="modal">
+		<div class="modal-content">
+			<span class="close"></span>
+			<h2><B>Hello Kitty</B> <Br><Br> Dave est obnubilé devant une vidéo de chatons vraiment troooooop mignons ! <Br><Br> Vous perdez 25% de vos larmes car la chaleur apparue dans son coeur à leur vue les assèche.</h2>
+			<img id="imgModal" src="images/chatons.jpg">
+		</div>
+	</div>
+
+	<!-- Modal Carte Mystère 2 -->
+	<div id="ModalCarteMyst2" class="modal">
+		<div class="modal-content">
+			<span class="close"></span>
+			<h2><B>Alerte à Malibu</B><Br><Br> Dave est beaucoup trop captivé par sa série préférée pour penser à pleurer.<Br><Br> Dommage pour ces 50% de larmes que vous perdez...</h2>
+			<img id="imgModal" src="images/baywatch.jpg">
+		</div>
+	</div>
+
+	<!-- Modal Carte Mystère 3 -->
+	<div id="ModalCarteMyst3" class="modal">
+		<div class="modal-content">
+			<span class="close"></span>
+			<h2><B>Légalisez les cookies (de Mamie)</B> <Br><Br> Dave a reçu un colis avec les délicieux cookies cuisinés par sa Mamie. Ils sont tellement bons qu'il n'a plus envie de pleurer. <Br><Br>Vous perdez 75% de vos larmes actuelles.</h2>
+			<img id="imgModal" src="images/cookie-mamie.jpg">
+		</div>
+	</div>
+
+	<!-- Modal Carte Mystère 4 -->
+	<div id="ModalCarteMyst4" class="modal">
+		<div class="modal-content">
+			<span class="close"></span>
+			<h2><B>Chouette, une mise à jour !</B> <Br><Br> L'ordinateur de Dave a une mise à jour à faire. <Br><Br>UNE TRES GROSSE MISE A JOUR qui vous engendre 25% de larmes supplémentaires...</h2>
+			<img id="imgModal" src="images/maj.jpg">
+		</div>
+	</div>
+
+	<!-- Modal Carte Mystère 5 -->
+	<div id="ModalCarteMyst5" class="modal">
+		<div class="modal-content">
+			<span class="close"></span>
+			<h2><B>Happy Birthday Mr Dave !</B> <Br><Br> C'est l'anniversaire de Dave ! Quel dommage qu'il soit seul avec sa part de gâteau. <Br><Br>Il est tellement triste que vous gagnez 50% de larmes supplémentaires ! </h2>
+			<img id="imgModal" src="images/anniversaire.jpg">
+		</div>
+	</div>
+
+	<!-- Modal Carte Mystère 6 -->
+	<div id="ModalCarteMyst6" class="modal">
+		<div class="modal-content">
+			<span class="close"></span>
+			<h2><B>Hot Stuff</B> <Br><Br> Larmes + prise de courant = incendie. OUPS Dave n'a plus Internet, il est au bout de sa vie. <Br><Br> Vous gagnez 75% de larmes supplémentaires !</h2>
+			<img id="imgModal" src="images/fire.jpg">
+		</div>
+	</div>
+
+
+<!-- -------------------- SCRIPTS -------------------- -->
+
+<script type="text/javascript" src="./js/CartesMyst.js"></script>
 <script src="./js/dave.js"></script>
-<script type="text/javascript" src="./js/larme.js"></script>
+<script src="./js/mouseover.js"></script>
+<script src="./js/animationLarme.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script src="./js/cookie.js"></script>
+<script src="./js/sauvegarde.js"></script>
+
 
 </body>
 
 <!-- -------------------- FOOTER -------------------- -->
 
 <footer>
-	
+	<p> Fais pleurer ton Dave, tous droits réservés. Un jeu réalisé par : <a href="https://www.linkedin.com/in/benoit-dugovic/" target="blank">Benoît</a>, <a href="https://www.linkedin.com/in/mathildegarin/" target="blank">Mathilde</a> & <a href="https://www.linkedin.com/in/sixtine-lanord/" target="blank">Sixtine</a> © 2019</p>
+	<div>
+		<a href="https://benoitd34.github.io/" target="blank"><img src="images/logo-benoit.png"></a>
+		<a href="https://mathilde-garin.github.io" target="blank"><img src="images/logo-mathilde.png"></a>
+		<a href="https://sixla.github.io/" target="blank"><img src="images/logo-sixtine.png"></a>
+	</div>
 </footer>
 
 </html>
+
+
